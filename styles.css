@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #f8f8f8;
+    --primary-accent: #006400;
+    --secondary-accent: #90EE90;
+    --text-color: #000000;
+    --text-light: #808080;
+    --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --header-height: 70px;
+}

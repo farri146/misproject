@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover | Ashton Farris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f8f8;
+            --umd-maroon: #7a0019;
+            --umd-gold: #ffcc33;
+            --text-color: #333333;
+            --text-light: #666666;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--umd-maroon);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--umd-gold);
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--umd-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .discover-main {
+            margin-top: var(--header-height);
+            padding: 4rem 2rem;
+        }
+
+        .discover-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h1 {
+            font-size: 2.5rem;
+            color: var(--umd-maroon);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .discover-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .discover-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .discover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h2 {
+            color: var(--umd-maroon);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-item i {
+            color: var(--umd-maroon);
+        }
+
+        @media (max-width: 768px) {
+            .discover-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Ashton Farris</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Me</a>
+                <a href="index.html#experience">Experience</a>
+                <a href="discover.html">Discover</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="discover-main">
+        <div class="discover-container">
+            <div class="section-title" data-aos="fade-up">
+                <h1>Why I Chose UMD (Duluth)</h1>
+                <p>The right fit for me because of price, location, amazing sights, friends, and academics.</p>
+            </div>
+
+            <div class="discover-grid">
+                <!-- Price Card -->
+                <div class="discover-card" data-aos="fade-up">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="card-content">
+                        <h2>Affordable Price</h2>
+                        <p>UMD offered a strong value: quality education at a cost that made sense for me and my family.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Great Value</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-scale-balanced"></i>
+                                <span>Cost vs. Quality</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="discover-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="card-content">
+                        <h2>Perfect Location</h2>
+                        <p>Duluth is the right distance from home—independent but still connected. The campus and city feel like a good fit.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Right Distance</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-city"></i>
+                                <span>Campus + City</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sights/Nature Card -->
+                <div class="discover-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="card-content">
+                        <h2>Beautiful Sights</h2>
+                        <p>Lake Superior, the North Shore, and endless trails. Duluth’s scenery makes everyday life better and weekends awesome.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-water"></i>
+                                <span>Lake Superior</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-tree"></i>
+                                <span>North Shore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friends/Housing Card -->
+                <div class="discover-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="card-content">
+                        <h2>Friends & Housing</h2>
+                        <p>I knew who I’d be living with, which made the transition easier and the day-to-day more fun.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Built-in Community</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-home"></i>
+                                <span>Smooth Move-In</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academics Card -->
+                <div class="discover-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="card-content">
+                        <h2>Schooling & Education</h2>
+                        <p>UMD’s business program gives me the right foundation and opportunities to grow—inside and outside the classroom.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-book"></i>
+                                <span>Business Program</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Supportive Faculty</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>

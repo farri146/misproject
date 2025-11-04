@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Interests | Ashton Farris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f8f8;
+            --umd-maroon: #7a0019;
+            --umd-gold: #ffcc33;
+            --text-color: #333333;
+            --text-light: #666666;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--umd-maroon);
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--umd-gold);
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--umd-gold);
+        }
+
+        .career-container {
+            max-width: 1200px;
+            margin: calc(var(--header-height) + 2rem) auto;
+            padding: 2rem;
+        }
+
+        .career-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .career-header h1 {
+            color: var(--umd-maroon);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .career-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .career-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .career-icon {
+            background: var(--umd-maroon);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .career-icon i {
+            font-size: 3rem;
+            color: var(--umd-gold);
+        }
+
+        .career-content {
+            padding: 2rem;
+        }
+
+        .career-content h2 {
+            color: var(--umd-maroon);
+            margin-bottom: 1rem;
+        }
+
+        .career-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .career-details {
+            margin-top: 1rem;
+        }
+
+        .career-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .career-detail-item i {
+            color: var(--umd-maroon);
+        }
+
+        .action-btn {
+            display: inline-block;
+            background: var(--umd-maroon);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .action-btn:hover {
+            background: #8f001f;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .career-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Ashton Farris</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="career.html">Career</a>
+                <a href="discover.html">Discover</a>
+                <a href="games.html">Games</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="career-container">
+        <div class="career-header" data-aos="fade-down">
+            <h1>After College: My Business Path</h1>
+            <p>With a Business degree from UMD, I’m aiming for roles where I can work with people, solve problems, and drive results—starting in client-focused and operations roles and growing into leadership.</p>
+        </div>
+
+        <div class="career-grid">
+            <div class="career-card" data-aos="fade-up">
+                <div class="career-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="career-content">
+                    <h2>Sales & Account Management</h2>
+                    <p>Start in client-facing roles where I can build relationships, understand customer needs, and grow revenue.</p>
+                    <div class="career-details">
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Business Development Representative</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Account Manager</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Inside/Outside Sales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="career-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="career-icon">
+                    <i class="fas fa-boxes-stacked"></i>
+                </div>
+                <div class="career-content">
+                    <h2>Operations & Supply Chain</h2>
+                    <p>Apply processes and problem-solving to keep products moving and customers happy.</p>
+                    <div class="career-details">
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Operations Coordinator</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Supply Chain/Logistics Analyst</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Store/Department Supervisor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="career-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="career-icon">
+                    <i class="fas fa-computer"></i>
+                </div>
+                <div class="career-content">
+                    <h2>Technology Sales & Support</h2>
+                    <p>Leverage my experience helping customers with tech to grow into higher-impact roles.</p>
+                    <div class="career-details">
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Retail to B2B Tech Sales</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sales Engineering (longer-term)</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Customer Success</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="career-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="career-icon">
+                    <i class="fas fa-road"></i>
+                </div>
+                <div class="career-content">
+                    <h2>Near‑Term Goals</h2>
+                    <p>Build experience, network, and skills while in school to hit the ground running after graduation.</p>
+                    <div class="career-details">
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Internships in sales or operations</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certs: Google Analytics/PM or HubSpot Sales</span>
+                        </div>
+                        <div class="career-detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Leadership in student orgs (e.g., TKE, clubs)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Games | Ashton Farris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f8f8;
+            --umd-maroon: #7a0019;
+            --umd-gold: #ffcc33;
+            --text-color: #333333;
+            --text-light: #666666;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --header-height: 70px;
+            --casino-red: #a00;
+            --casino-gold: #ffd700;
+            --felt-green: #2d6b33;
+            --wood-brown: #753015;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% {
+                text-shadow: 0 0 10px var(--casino-gold),
+                           0 0 20px var(--casino-gold),
+                           0 0 30px var(--casino-gold);
+            }
+            50% {
+                text-shadow: 0 0 15px var(--casino-gold),
+                           0 0 25px var(--casino-gold),
+                           0 0 35px var(--casino-gold);
+            }
+        }
+
+        @keyframes casinoLights {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #1a1a1a;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(45deg, rgba(0,0,0,0.8) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(0,0,0,0.8) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.8) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.8) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent, rgba(0,0,0,0.8));
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--casino-red);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(255, 215, 0, 0.3);
+            border-bottom: 2px solid var(--casino-gold);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--casino-gold);
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+            animation: neonPulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--casino-gold);
+        }
+
+        .casino-floor {
+            max-width: 1200px;
+            margin: calc(var(--header-height) + 2rem) auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .casino-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--casino-gold) 0px,
+                var(--casino-gold) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: casinoLights 2s infinite;
+            box-shadow: 0 0 20px var(--casino-gold);
+        }
+
+        .casino-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--casino-gold);
+            text-shadow: 0 0 10px var(--casino-gold);
+        }
+
+        .casino-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+            animation: neonPulse 3s infinite;
+        }
+
+        .casino-header p {
+            color: #fff;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .game-section {
+            background: transparent;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #game-board {
+            display: inline-block;
+            margin: 2rem 0;
+        }
+
+        .game-controls {
+            margin: 1rem 0;
+        }
+
+        .game-btn {
+            background: var(--casino-red);
+            color: var(--casino-gold);
+            border: 2px solid var(--casino-gold);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .game-btn:hover {
+            background: var(--casino-gold);
+            color: var(--casino-red);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .game-btn:disabled {
+            background: #666;
+            border-color: #888;
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .score {
+            font-size: 1.5rem;
+            color: var(--umd-maroon);
+            margin: 1rem 0;
+        }
+
+        .blackjack-table {
+            background: var(--felt-green);
+            border-radius: 200px;
+            padding: 2rem;
+            margin: 2rem auto;
+            border: 20px solid var(--wood-brown);
+            box-shadow: 
+                inset 0 0 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.2);
+            position: relative;
+            max-width: 1000px;
+        }
+
+        .blackjack-table::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--casino-gold);
+            border-radius: 210px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .table-felt {
+            position: relative;
+            padding: 2rem;
+            border-radius: 150px;
+            background: #1e4d24;
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 215, 0, 0.1);
+            perspective: 1000px;
+        }
+
+        .betting-spot {
+            width: 80px;
+            height: 80px;
+            border: 3px dashed var(--casino-gold);
+            border-radius: 50%;
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--casino-gold);
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            display: inline-block;
+            width: 70px;
+            height: 100px;
+            background: #1a1a1a;
+            border-radius: 5px;
+            margin: 5px;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(255, 215, 0, 0.1);
+            text-align: center;
+            line-height: 100px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid var(--casino-gold);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            color: var(--casino-gold);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) rotateY(10deg);
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .player-hand, .dealer-hand {
+            margin: 1rem 0;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hand-label {
+            color: var(--casino-gold);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+
+        .betting-area {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .bankroll {
+            color: var(--casino-gold);
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+
+        .bet-input {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .bet-input label {
+            color: var(--casino-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .bet-input input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--casino-gold);
+            border-radius: 5px;
+            color: var(--casino-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            text-align: center;
+            width: 100px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .bet-input input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .games-container {
+                padding: 1rem;
+            }
+            
+            .card {
+                width: 50px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Ashton Farris</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="career.html">Career</a>
+                <a href="discover.html">Discover</a>
+                <a href="games.html">Games</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="casino-floor">
+        <div class="casino-lights"></div>
+        <div class="casino-header" data-aos="fade-down">
+            <h1>Ashton's Casino</h1>
+            <p>Where Fortune Favors the Bold</p>
+        </div>
+
+        <div class="game-section" data-aos="fade-up">
+            <div class="game-container">
+                <div class="blackjack-table">
+                    <div class="table-felt">
+                        <div class="bankroll">Bankroll: $<span id="bankroll">1000</span></div>
+                        <div class="dealer-section">
+                            <div class="hand-label">Dealer's Hand</div>
+                            <div class="dealer-hand" id="dealer-hand"></div>
+                            <div class="score">Dealer's Total: <span id="dealer-score">0</span></div>
+                        </div>
+                        <div class="player-section">
+                            <div class="hand-label">Your Hand</div>
+                            <div class="player-hand" id="player-hand"></div>
+                            <div class="score">Your Total: <span id="player-score">0</span></div>
+                        </div>
+                        <div class="betting-area">
+                            <div class="bet-input">
+                                <label for="bet-amount">Bet Amount: $</label>
+                                <input type="number" id="bet-amount" min="1" max="1000" value="10" step="1">
+                            </div>
+                            <div class="game-controls">
+                                <button class="game-btn" id="deal-btn">Deal Cards</button>
+                                <button class="game-btn" id="hit-btn" disabled>Hit</button>
+                                <button class="game-btn" id="stand-btn" disabled>Stand</button>
+                                <button class="game-btn" id="double-btn" disabled>Double Down</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Snake Game Implementation
+        const canvas = document.getElementById('game-board');
+        if (canvas) {
+        const ctx = canvas.getContext('2d');
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+        
+        let snake = [];
+        let food = {};
+        let dx = 0;
+        let dy = 0;
+        let score = 0;
+        let gameInterval;
+
+        function initGame() {
+            snake = [
+                { x: 10, y: 10 }
+            ];
+            food = generateFood();
+            score = 0;
+            document.getElementById('score').textContent = score;
+            dx = 0;
+            dy = 0;
+        }
+
+        function generateFood() {
+            return {
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            };
+        }
+
+        function drawGame() {
+            // Clear canvas
+            ctx.fillStyle = '#f8f8f8';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Move snake
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+            snake.unshift(head);
+
+            // Check if snake ate food
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+                food = generateFood();
+            } else {
+                snake.pop();
+            }
+
+            // Draw snake
+            ctx.fillStyle = '#7a0019';
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+            });
+
+            // Draw food
+            ctx.fillStyle = '#ffcc33';
+            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+
+            // Check collision
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                gameOver();
+            }
+
+            // Check self-collision
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    gameOver();
+                }
+            }
+        }
+
+        function gameOver() {
+            clearInterval(gameInterval);
+            alert('Game Over! Score: ' + score);
+            initGame();
+        }
+
+        function startGame() {
+            clearInterval(gameInterval);
+            initGame();
+            gameInterval = setInterval(drawGame, 100);
+        }
+
+        function resetGame() {
+            clearInterval(gameInterval);
+            initGame();
+            drawGame();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (dy === 1) return;
+                    dx = 0;
+                    dy = -1;
+                    break;
+                case 'ArrowDown':
+                    if (dy === -1) return;
+                    dx = 0;
+                    dy = 1;
+                    break;
+                case 'ArrowLeft':
+                    if (dx === 1) return;
+                    dx = -1;
+                    dy = 0;
+                    break;
+                case 'ArrowRight':
+                    if (dx === -1) return;
+                    dx = 1;
+                    dy = 0;
+                    break;
+            }
+        });
+        }
+
+                // Blackjack Game Implementation
+        const suits = ['♠', '♣', '♥', '♦'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        let deck = [];
+        let playerHand = [];
+        let dealerHand = [];
+        let gameInProgress = false;
+        let bankroll = 1000;
+        let currentBet = 0;        // Initialize the display when the page loads
+        window.onload = function() {
+            // Initialize display
+            document.getElementById('bankroll').textContent = bankroll;
+            document.getElementById('player-score').textContent = '0';
+            document.getElementById('dealer-score').textContent = '0';
+            document.getElementById('dealer-hand').innerHTML = '';
+            document.getElementById('player-hand').innerHTML = '';
+            disableGameButtons();
+
+            // Add event listeners for buttons
+            document.getElementById('deal-btn').addEventListener('click', startNewGame);
+            document.getElementById('hit-btn').addEventListener('click', hit);
+            document.getElementById('stand-btn').addEventListener('click', stand);
+            document.getElementById('double-btn').addEventListener('click', doubleDown);
+        };
+
+
+
+        function createDeck() {
+            deck = [];
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            // Shuffle deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        function getCardValue(card) {
+            if (card.value === 'A') return 11;
+            if (['K', 'Q', 'J'].includes(card.value)) return 10;
+            return parseInt(card.value);
+        }
+
+        function calculateHandValue(hand) {
+            let value = 0;
+            let aces = 0;
+
+            for (let card of hand) {
+                if (card.value === 'A') {
+                    aces++;
+                    value += 11;
+                } else {
+                    value += getCardValue(card);
+                }
+            }
+
+            while (value > 21 && aces > 0) {
+                value -= 10;
+                aces--;
+            }
+
+            return value;
+        }
+
+        function displayCard(card) {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+            cardElement.textContent = card.value + card.suit;
+            cardElement.style.color = ['♥', '♦'].includes(card.suit) ? '#ff4444' : 'var(--casino-gold)';
+            return cardElement;
+        }
+
+        function updateDisplay(showDealerCards = false) {
+            const playerHandElement = document.getElementById('player-hand');
+            const dealerHandElement = document.getElementById('dealer-hand');
+            const playerScoreElement = document.getElementById('player-score');
+            const dealerScoreElement = document.getElementById('dealer-score');
+
+            playerHandElement.innerHTML = '';
+            dealerHandElement.innerHTML = '';
+
+            playerHand.forEach(card => {
+                playerHandElement.appendChild(displayCard(card));
+            });
+
+            dealerHand.forEach((card, index) => {
+                if (index === 0 || showDealerCards || !gameInProgress) {
+                    dealerHandElement.appendChild(displayCard(card));
+                } else {
+                    const hiddenCard = document.createElement('div');
+                    hiddenCard.className = 'card';
+                    hiddenCard.textContent = '?';
+                    dealerHandElement.appendChild(hiddenCard);
+                }
+            });
+
+            playerScoreElement.textContent = calculateHandValue(playerHand);
+            dealerScoreElement.textContent = showDealerCards ? 
+                calculateHandValue(dealerHand) : 
+                calculateHandValue([dealerHand[0]]);
+        }
+
+
+
+        function updateBankroll(amount) {
+            bankroll += amount;
+            document.getElementById('bankroll').textContent = bankroll;
+        }
+
+        function startNewGame() {
+            // Get bet amount from input
+            currentBet = parseInt(document.getElementById('bet-amount').value);
+            
+            if (currentBet <= 0) {
+                alert('Please enter a valid bet amount!');
+                return;
+            }
+            
+            if (currentBet > bankroll) {
+                alert('Not enough funds!');
+                return;
+            }
+            
+            if (gameInProgress) {
+                alert('Game already in progress!');
+                return;
+            }
+
+            // Deduct bet from bankroll
+            bankroll -= currentBet;
+            document.getElementById('bankroll').textContent = bankroll;
+
+            createDeck();
+            playerHand = [];
+            dealerHand = [];
+            gameInProgress = true;
+
+            // Deal initial cards
+            playerHand = [deck.pop(), deck.pop()];
+            dealerHand = [deck.pop(), deck.pop()];
+            
+            // Enable game buttons
+            document.getElementById('hit-btn').disabled = false;
+            document.getElementById('stand-btn').disabled = false;
+            document.getElementById('double-btn').disabled = bankroll < currentBet;
+            document.getElementById('deal-btn').disabled = true;
+
+            updateDisplay();
+
+            // Check for blackjack
+            const playerValue = calculateHandValue(playerHand);
+            if (playerValue === 21) {
+                gameInProgress = false;
+                setTimeout(() => {
+                    updateDisplay(true); // Show dealer's cards
+                    const dealerValue = calculateHandValue(dealerHand);
+                    if (dealerValue !== 21) {
+                        alert('Blackjack! You win 3:2!');
+                        updateBankroll(Math.floor(currentBet * 2.5)); // Pay 3:2 for blackjack
+                    } else {
+                        alert('Push - Both have Blackjack!');
+                        updateBankroll(currentBet); // Return bet on push
+                    }
+                    endRound();
+                }, 500);
+            }
+        }
+
+        function endRound() {
+            currentBet = 0;
+            document.getElementById('deal-btn').disabled = false;
+            disableGameButtons();
+            gameInProgress = false;
+        }
+
+        function hit() {
+            if (!gameInProgress) return;
+
+            playerHand.push(deck.pop());
+            updateDisplay();
+
+            const playerValue = calculateHandValue(playerHand);
+            if (playerValue > 21) {
+                gameInProgress = false;
+                setTimeout(() => {
+                    alert('Bust! You lose!');
+                    currentBet = 0;
+                    disableGameButtons();
+                    endRound();
+                }, 500);
+            } else if (playerValue === 21) {
+                stand();
+            }
+        }
+
+        function doubleDown() {
+            if (!gameInProgress || bankroll < currentBet) return;
+            
+            bankroll -= currentBet;
+            currentBet *= 2;
+            document.getElementById('bankroll').textContent = bankroll;
+            
+            playerHand.push(deck.pop());
+            updateDisplay();
+            
+            const playerValue = calculateHandValue(playerHand);
+            if (playerValue > 21) {
+                gameInProgress = false;
+                setTimeout(() => {
+                    alert('Bust! You lose!');
+                    currentBet = 0;
+                    disableGameButtons();
+                    endRound();
+                }, 500);
+            } else {
+                stand();
+            }
+        }
+
+        function disableGameButtons() {
+            document.getElementById('hit-btn').disabled = true;
+            document.getElementById('stand-btn').disabled = true;
+            document.getElementById('double-btn').disabled = true;
+        }
+
+        function stand() {
+            if (!gameInProgress) return;
+            gameInProgress = false;
+            disableGameButtons();
+
+            function dealerDraw(callback) {
+                const dealerValue = calculateHandValue(dealerHand);
+                if (dealerValue < 17) {
+                    setTimeout(() => {
+                        dealerHand.push(deck.pop());
+                        updateDisplay(true);
+                        dealerDraw(callback);
+                    }, 500);
+                } else {
+                    callback();
+                }
+            }
+
+            // Show dealer's hidden card first
+            updateDisplay(true);
+            
+            // Start dealer's turn after a short delay
+            setTimeout(() => {
+                dealerDraw(() => {
+                    const playerValue = calculateHandValue(playerHand);
+                    const dealerValue = calculateHandValue(dealerHand);
+
+                    setTimeout(() => {
+                        if (dealerValue > 21) {
+                            alert('Dealer busts! You win!');
+                            updateBankroll(currentBet * 2);
+                        } else if (dealerValue > playerValue) {
+                            alert('Dealer wins!');
+                        } else if (playerValue > dealerValue) {
+                            alert('You win!');
+                            updateBankroll(currentBet * 2);
+                        } else {
+                            alert('Push - It\'s a tie!');
+                            updateBankroll(currentBet);
+                        }
+                        endRound();
+                    }, 500);
+                });
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
