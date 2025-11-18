@@ -178,9 +178,69 @@
             color: var(--umd-maroon);
         }
 
+        .video-section {
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--umd-maroon) 0%, #5a0013 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-section h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .video-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--umd-gold);
+            color: var(--umd-maroon);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 204, 51, 0.3);
+        }
+
+        .video-link:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 204, 51, 0.4);
+        }
+
+        .video-link i {
+            font-size: 1.3rem;
+        }
+
         @media (max-width: 768px) {
             .discover-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .video-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .video-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .video-link {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -302,6 +362,15 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="video-section" data-aos="fade-up">
+                <h3>Learn More About My Journey</h3>
+                <p>Watch my marketing video to discover more about my story and aspirations</p>
+                <a href="https://www.youtube.com/shorts/wQxbnMBR1kA?si=rJ1qKaJglBqHNH5V" target="_blank" rel="noopener noreferrer" class="video-link">
+                    <i class="fab fa-youtube"></i>
+                    <span>Click here for marketing video</span>
+                </a>
             </div>
         </div>
     </main>
